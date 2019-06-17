@@ -16,12 +16,12 @@ const registrationRouter = require('./routes/register')
 const app = express();
 
 const oidc = new ExpressOIDC({
-  issuer: `https://dev-783522.okta.com/oauth2/default`,
-  client_id: '0oaq8j47iM6LCVZ4v356',
-  client_secret: 'ZVrI6KxwbukIIdcwOTcAENdCuvBWLstlLbw5KHHO',
-  redirect_uri: `http://localhost:3000/authorization-code/callback`,
-  appBaseUrl: 'http://localhost:3000',
-  scope: 'openid profile'
+  issuer: `${process.env.ORG_URL}/oauth2/default`,
+  client_id: process.env.CLIENT_ID,
+  client_secret: process.env.CLIENT_SECRET,
+  redirect_uri: `${process.env.HOST_URL}/authorization-code/callback`,
+  appBaseUrl: `${process.env.HOST_URL}`,
+  scope: 'openid profile groups',
 })
 
 // view engine setup
